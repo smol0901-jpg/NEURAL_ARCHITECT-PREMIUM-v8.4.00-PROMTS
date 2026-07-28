@@ -1,7 +1,7 @@
 # NEURAL_ARCHITECT PREMIUM++ v8.4.00 — Библиотека промтов
 
 > **Универсальный промпт-конструктор и каталог готовых режимов** для работы с любыми задачами: от создания контента и маркетинга до планирования, здоровья и фуд-фотографии.
->
+> Базовая система для активации и дальнейшего использования: https://github.com/smol0901-jpg/INTENTION_ENGINE_v8.4.00
 > Автор: **Смолянинов Александр Вячеславович** · [ВКонтакте](https://vk.com/smolyaninovchef) · [@ASV_prod](https://t.me/ASV_prod)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
