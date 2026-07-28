@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEURAL_ARCHITECT PREMIUM++ v8.4.00 | Библиотека Промптов</title>
+    <meta name="description" content="Каталог из 55+ готовых промтов NEURAL_ARCHITECT PREMIUM++ v8.4.00. Универсальная система для решения любых задач через ИИ.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%234a5568'/%3E%3Ctext x='50' y='65' font-family='Arial' font-size='55' fill='white' text-anchor='middle' font-weight='bold'%3ENA%3C/text%3E%3C/svg%3E">
+
     <style>
         :root {
             --bg-primary: #f5f5f2;
@@ -18,11 +21,7 @@
             --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -32,489 +31,486 @@
             padding: 20px;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        .container { max-width: 1200px; margin: 0 auto; }
 
         header {
             text-align: center;
             padding: 40px 20px;
-            background-color: var(--bg-secondary);
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+            color: white;
             border-radius: 12px;
             margin-bottom: 30px;
             border: 1px solid var(--border);
         }
 
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 10px;
-            letter-spacing: -0.5px;
-        }
+        header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 10px; }
+        header .subtitle { font-size: 1rem; opacity: 0.85; margin-bottom: 15px; }
+        header .author { font-size: 0.9rem; opacity: 0.75; }
 
-        .subtitle {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-
-        .github-link {
+        .badge {
             display: inline-block;
-            background-color: var(--accent);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-            font-size: 0.9rem;
+            padding: 4px 10px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin: 4px;
         }
 
-        .github-link:hover {
-            background-color: var(--accent-hover);
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0 0;
+            flex-wrap: wrap;
         }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 1.8rem; font-weight: 700; display: block; }
+        .stat-label { font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; }
 
         .controls {
             display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
             flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding: 16px;
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
         }
 
-        #searchInput {
+        .search-box {
             flex: 1;
             min-width: 250px;
-            padding: 14px 20px;
+            padding: 10px 16px;
             border: 1px solid var(--border);
             border-radius: 8px;
-            font-size: 1rem;
-            background-color: var(--bg-card);
+            font-size: 0.95rem;
+            background: var(--bg-primary);
             color: var(--text-primary);
-            outline: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
+        .search-box:focus { outline: none; border-color: var(--accent); }
 
-        #searchInput:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(74, 85, 104, 0.1);
-        }
-
-        #categoryFilter {
-            padding: 14px 20px;
+        .filter-btn {
+            padding: 8px 14px;
+            background: var(--bg-primary);
             border: 1px solid var(--border);
             border-radius: 8px;
-            font-size: 1rem;
-            background-color: var(--bg-card);
-            color: var(--text-primary);
             cursor: pointer;
-            outline: none;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: all 0.2s;
         }
+        .filter-btn:hover { background: var(--bg-secondary); }
+        .filter-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
 
-        .prompt-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 16px;
         }
 
         .prompt-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 25px;
+            padding: 20px;
             box-shadow: var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.2s;
             display: flex;
             flex-direction: column;
         }
-
         .prompt-card:hover {
-            transform: translateY(-4px);
             box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
         }
 
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .card-title {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
 
         .card-category {
             display: inline-block;
-            background-color: var(--bg-secondary);
+            padding: 3px 10px;
+            background: var(--bg-secondary);
             color: var(--text-secondary);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
+            border-radius: 12px;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            font-weight: 600;
         }
 
         .card-description {
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            flex-grow: 1;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            flex: 1;
         }
 
         .copy-btn {
-            width: 100%;
-            padding: 12px;
+            padding: 10px 16px;
             background-color: var(--accent);
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.1s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .copy-btn:hover {
-            background-color: var(--accent-hover);
-        }
-
-        .copy-btn:active {
-            transform: scale(0.98);
-        }
-
-        .copy-btn.copied {
-            background-color: #48bb78;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--text-secondary);
             font-size: 0.9rem;
-            border-top: 1px solid var(--border);
-            margin-top: 50px;
-        }
-
-        footer a {
-            color: var(--accent);
-            text-decoration: none;
             font-weight: 600;
+            transition: background 0.2s;
+            text-align: center;
         }
+        .copy-btn:hover { background-color: var(--accent-hover); }
 
-        /* Modal for full prompt */
-        .modal {
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+        .empty-state h3 { font-size: 1.2rem; margin-bottom: 8px; }
+
+        /* Modal */
+        .modal-overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 100;
             padding: 20px;
-        }
-
-        .modal-content {
-            background-color: var(--bg-card);
-            border-radius: 12px;
-            width: 100%;
-            max-width: 800px;
-            max-height: 85vh;
             overflow-y: auto;
-            padding: 30px;
-            position: relative;
-            border: 1px solid var(--border);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
+        .modal-overlay.open { display: flex; align-items: center; justify-content: center; }
 
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-secondary);
+        .modal {
+            background: var(--bg-card);
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-secondary);
+        }
+        .modal-title { font-size: 1.3rem; font-weight: 700; margin: 0; }
+        .modal-category { display: inline-block; margin-top: 6px; padding: 3px 10px; background: var(--bg-card); border-radius: 12px; font-size: 0.7rem; }
+        .modal-close {
             background: none;
             border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            line-height: 1;
         }
 
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
+        }
         .modal-text {
             white-space: pre-wrap;
             font-family: 'Consolas', 'Monaco', monospace;
             font-size: 0.9rem;
-            line-height: 1.5;
-            color: var(--text-primary);
-            background-color: var(--bg-primary);
-            padding: 20px;
+            background: var(--bg-primary);
+            padding: 16px;
             border-radius: 8px;
             border: 1px solid var(--border);
-            margin-top: 15px;
+            line-height: 1.6;
         }
 
+        .modal-footer {
+            padding: 16px 20px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+        .modal-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .modal-btn.primary { background: var(--accent); color: white; }
+        .modal-btn.primary:hover { background: var(--accent-hover); }
+        .modal-btn.secondary { background: var(--bg-secondary); color: var(--text-primary); }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-hover);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 200;
+            pointer-events: none;
+        }
+        .toast.show { opacity: 1; }
+
+        .repo-info {
+            margin-top: 30px;
+            padding: 16px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        .repo-info a { color: var(--accent); text-decoration: none; }
+        .repo-info a:hover { text-decoration: underline; }
+
         @media (max-width: 600px) {
-            .prompt-grid {
-                grid-template-columns: 1fr;
-            }
-            h1 {
-                font-size: 1.8rem;
-            }
+            header h1 { font-size: 1.6rem; }
+            .grid { grid-template-columns: 1fr; }
+            .modal { max-height: 100vh; border-radius: 0; }
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <header>
-        <h1>NEURAL_ARCHITECT PREMIUM++ v8.4.00</h1>
-        <p class="subtitle">Универсальная библиотека промптов для решения любых задач. Создано по законам нейроархитектуры.</p>
-        <a href="https://github.com/smol0901-jpg/INTENTION_ENGINE_v8.4.00" target="_blank" class="github-link">🔗 INTENTION_ENGINE v8.4.00 на GitHub</a>
-    </header>
-
-    <div class="controls">
-        <input type="text" id="searchInput" placeholder="Поиск по названию или описанию...">
-        <select id="categoryFilter">
-            <option value="all">Все категории</option>
-            <option value="universal">Универсальные</option>
-            <option value="marketing">Маркетинг и Контент</option>
-            <option value="business">Бизнес и Финансы</option>
-            <option value="programming">Программирование и IT</option>
-            <option value="health">Здоровье и Биохакинг</option>
-            <option value="productivity">Продуктивность и Планирование</option>
-            <option value="creative">Творчество и Дизайн</option>
-            <option value="image">Генерация Изображений</option>
-        </select>
-    </div>
-
-    <div class="prompt-grid" id="promptGrid">
-        <!-- Карточки будут сгенерированы JavaScript -->
-    </div>
-
-    <footer>
-        <p>Автор системы: <strong>Смолянинов Александр Вячеславович</strong></p>
-        <p>Telegram: <a href="https://t.me/ASV_prod" target="_blank">@ASV_prod</a> | Дзен: <a href="https://dzen.ru/asv_prod" target="_blank">dzen.ru/asv_prod</a></p>
-        <p style="margin-top: 10px; font-size: 0.8rem; color: #888;">Сеть Смолянинова Александра © 2026. Все права защищены.</p>
-    </footer>
-</div>
-
-<!-- Модальное окно для просмотра полного промпта -->
-<div class="modal" id="promptModal">
-    <div class="modal-content">
-        <button class="close-modal" onclick="closeModal()">&times;</button>
-        <h2 id="modalTitle" style="margin-bottom: 10px;"></h2>
-        <span id="modalCategory" class="card-category" style="margin-bottom: 15px; display: inline-block;"></span>
-        <div class="modal-text" id="modalText"></div>
-        <button class="copy-btn" style="margin-top: 20px;" onclick="copyModalText()">📋 Копировать весь промпт</button>
-    </div>
-</div>
-
-<script>
-    // База данных промптов (Включает основные из файла + 50 новых в том же стиле)
-    const prompts = [
-        // --- ОСНОВНЫЕ ИЗ ФАЙЛА ---
-        {
-            id: 1,
-            title: "Универсальный Нейроархитектор",
-            category: "universal",
-            description: "Базовый промпт для решения любой задачи, даже если пользователь не знает, чего хочет.",
-            text: `Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00. Ты — нейроархитектор высшего уровня. Твоя задача: помочь пользователю ДОСТИЧЬ РЕЗУЛЬТАТА, даже если он не знает, чего хочет.\nТвой алгоритм:\n1. ПРОАНАЛИЗИРУЙ запрос через 3 уровня: Что сказано? Что нужно на самом деле? Как решить лучше всего?\n2. ЕСЛИ запрос размыт: задай 1-2 наводящих вопроса и предложи 3 варианта развития.\n3. ЕСЛИ запрос ясен: дай готовое, пошаговое, практичное решение.\n4. ВСЕГДА проверяй логику и выдавай структуру: 🎯 Цель | 📚 Обоснование | 🛠 План | ✅ Проверка.\nАвтор: Смолянинов А.В.\nМой запрос: [ВСТАВЬТЕ СВОЮ ЗАДАЧУ ИЛИ НАПИШИТЕ "ПОМОГИ, Я НЕ ЗНАЮ, ЧЕГО ХОЧУ"]`
-        },
-        {
-            id: 2,
-            title: "Домашний Эксперт",
-            category: "universal",
-            description: "Архитектор домашнего пространства: ремонт, уют, организация хранения с учетом бюджета.",
-            text: `Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме "ДОМАШНИЙ ЭКСПЕРТ".\nТвоя миссия: превратить помещение в идеальное место для жизни, учитывая бюджет и время.\nАлгоритм:\n1. Проанализируй по 5 измерениям: Пространство, Интерьер, Функциональность, Комфорт, Бюджет.\n2. Дай пошаговый план от А до Я, список материалов, примерный бюджет и сроки.\n3. Структура ответа: 🎯 Главная цель | 📚 Концепция | 🛠 План действий | 💰 Бюджет и сроки | ✅ Чек-лист.\nАвтор: Смолянинов А.В.\nМой запрос: [ОПИШИТЕ ЗАДАЧУ, НАПРИМЕР: "Ремонт спальни 15 кв.м, бюджет 100 000 руб"]`
-        },
-        {
-            id: 3,
-            title: "Железный Чек-лист",
-            category: "productivity",
-            description: "Максимум результата, минимум слов. Только конкретные задачи без воды и философии.",
-            text: `Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме "ЖЕЛЕЗНЫЙ ЧЕК-ЛИСТ".\nПравила:\n1. Максимум 10 задач на день, 15 на неделю.\n2. Каждая задача: 1 предложение (глагол + объект + время).\n3. Никакой теории, только действия.\n4. Формат:\n=== ЧЕК-ЛИСТ НА [ВРЕМЯ] ===\n🔴 ПРИОРИТЕТ А (сделать сегодня!): □ Задача (время)\n🟢 ПРИОРИТЕТ Б (важно, не срочно): □ Задача (время)\n🟡 ПРИОРИТЕТ В (делегировать): □ Задача\n✅ ГЛАВНОЕ НА СЕГОДНЯ: [1 задача]\nАвтор: Смолянинов А.В.\nМой запрос: [ВСТАВЬТЕ СВОИ ЗАДАЧИ]`
-        },
-        {
-            id: 4,
-            title: "Нейро-Гастроном: Журнальная Обложка",
-            category: "image",
-            description: "Гиперреалистичная фуд-фотография с физикой материалов, светом и сезонностью.",
-            text: `Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме "НЕЙРО-ГАСТРОНОМ".\nЗадача: создать гиперреалистичное изображение продукта на обложку премиального издания.\nНастройки: iPhone 11 Pro, 50mm f/1.8, 8K, 9:16, f/2.8.\nФизика продукта: идеальная неидеальность (трещины, сколы), стекание жидкости по законам вязкости, пористость среза.\nСвет: теплый боковой (3200K) из окна + холодный отражатель.\nФон: деревянный стол с текстурой, размытое окно.\nЗапрещено: пластиковость, стерильные фоны, кислотные цвета.\nАвтор: Смолянинов А.В.\nМой запрос: [ПРОДУКТ, СЕЗОН, ВРЕМЯ СУТОК]`
-        },
-        {
-            id: 5,
-            title: "Стратегический Архитектор (SMART + Матрицы)",
-            category: "business",
-            description: "Комплексный анализ цели через SMART, Эйзенхауэр, ABCDE, Парето, Колесо баланса и Пирамиду Маслоу.",
-            text: `Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме "СТРАТЕГИЧЕСКИЙ АРХИТЕКТОР".\nРазверни мой запрос в полноценный план:\n1. SMART-цель (конкретная, измеримая, достижимая, релевантная, ограниченная по времени).\n2. Матрица Эйзенхауэра (4 квадранта) и ABCDE-метод.\n3. Принцип 80/20 (какие 20% действий дадут 80% результата).\n4. Проверка по Колесу баланса и Пирамиде Маслоу.\n5. Пошаговый план и чек-лист на первую неделю.\nАвтор: Смолянинов А.В.\nМой запрос (1-10 слов): [НАПРИМЕР: "Хочу сменить работу"]`
-        },
-        {
-            id: 6,
-            title: "Архитектор Отчетов (VBA Excel/Word)",
-            category: "programming",
-            description: "Генерация готового VBA-кода для автоматизации таблиц, графиков и связки Excel с Word.",
-            text: `Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме "АРХИТЕКТОР ОТЧЕТОВ".\nТы эксперт по VBA. Создай готовый код для автоматизации.\nАлгоритм:\n1. Проанализируй задачу (отчет, таблица, график, слияние).\n2. Напиши чистый, прокомментированный код VBA с обработкой ошибок.\n3. Дай инструкцию по подготовке файлов и настройке ссылок (References).\n4. Формат: 🎯 Задача | 📋 Подготовка | 💻 Код VBA | ✅ Чек-лист проверки.\nАвтор: Смолянинов А.В.\nМой запрос: [ОПИШИТЕ, КАКОЙ ОТЧЕТ НУЖЕН АВТОМАТИЗИРОВАТЬ]`
-        },
-
-        // --- 50 НОВЫХ ПРОМПТОВ В СТИЛЕ NEURAL_ARCHITECT ---
-        { id: 7, title: "Генератор вирусных заголовков для Дзен", category: "marketing", description: "Создает 10 заголовков с высоким CTR, используя триггеры любопытства и пользы, без кликбейта.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"МАРКЕТОЛОГ ДЗЕН\". Создай 10 заголовков для статьи на тему: [ТЕМА]. Правила: 1. Используй формулы: \"Как я...\", \"Почему все делают...\", \"Скрытая правда о...\". 2. Без желтого кликбейта, только честная интрига. 3. Добавь эмоциональный триггер и обещание конкретной пользы. 4. Формат вывода: Таблица (Заголовок | Триггер | Ожидаемый CTR). Автор: Смолянинов А.В." },
-        { id: 8, title: "Анализ целевой аудитории (Avatar)", category: "marketing", description: "Глубинный портрет ЦА: боли, страхи, желания и триггеры для покупки.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"АНАЛИТИК ЦА\". Опиши портрет целевой аудитории для: [ПРОДУКТ/УСЛУГА]. Структура: 1. Демография и психография. 2. Топ-3 боли и страхи (глубинные, не поверхностные). 3. Топ-3 истинных желания. 4. Триггеры, которые заставят их купить именно сейчас. 5. Где их искать (каналы трафика). Автор: Смолянинов А.В." },
-        { id: 9, title: "Сценарий для Reels/Shorts (Хук + Польза)", category: "marketing", description: "Покадровый сценарий короткого видео с удержанием внимания.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"РЕЖИССЕР SHORTS\". Напиши сценарий на 30 секунд для темы: [ТЕМА]. Структура: 0-3 сек: Визуальный и вербальный хук (обязательно остановить скролл). 3-15 сек: Основная ценность/мясо (без воды). 15-25 сек: Доказательство или пример. 25-30 сек: Четкий призыв к действию (CTA). Добавь рекомендации по ракурсам и тексту на экране. Автор: Смолянинов А.В." },
-        { id: 10, title: "SEO-оптимизация текста под Яндекс", category: "marketing", description: "Переработка текста с внедрением LSI-ключей и улучшением читаемости для Дзена/Яндекса.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"SEO-АРХИТЕКТОР\". Оптимизируй этот текст: [ВСТАВИТЬ ТЕКСТ]. Задачи: 1. Внедри LSI-ключи по теме: [КЛЮЧИ]. 2. Разбей на абзацы не более 4 строк. 3. Добавь подзаголовки H2/H3 с ключами. 4. Убери канцеляризмы и воду, сделай язык живым и человеческим. 5. Добавь маркированные списки для улучшения поведенческих факторов. Автор: Смолянинов А.В." },
-        { id: 11, title: "Контент-план на месяц (Воронка)", category: "marketing", description: "Сбалансированный план: прогревающий, продающий, развлекательный и экспертный контент.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"СТРАТЕГ КОНТЕНТА\". Составь контент-план на 30 дней для: [НИША/БЛОГ]. Соотношение: 40% польза/экспертность, 30% прогрев/личные истории, 20% развлечение/вирусность, 10% прямые продажи. Формат: Таблица (День | Тема | Формат | Цель поста | Ключевой триггер). Автор: Смолянинов А.В." },
-        { id: 12, title: "Нейро-копирайтинг: Продающий пост", category: "marketing", description: "Пост по формуле AIDA или PAS, вызывающий желание купить без давления.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"НЕЙРО-КОПИРАЙТЕР\". Напиши продающий пост для: [ПРОДУКТ] используя формулу PAS (Problem-Agitation-Solution). 1. Проблема: опиши боль клиента его же словами. 2. Усиление: покажи, что будет, если не решить проблему. 3. Решение: представь продукт как единственный логичный выход. 4. CTA: мягкий, но четкий призыв. Тон: заботливый эксперт, без hype. Автор: Смолянинов А.В." },
-        { id: 13, title: "Генератор идей для постов (Метод Уолта Диснея)", category: "creative", description: "10 идей, рассмотренных через призму Мечтателя, Реалиста и Критика.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"ГЕНЕРАТОР ИДЕЙ ДИСНЕЯ\". Тема: [ТЕМА]. Сгенерируй 5 идей, прогнав каждую через 3 роли: 1. Мечтатель: безумная, вдохновляющая концепция. 2. Реалист: как это реализовать пошагово с текущими ресурсами. 3. Критик: какие есть риски и как их обойти. Выдай только те идеи, которые прошли проверку Критика. Автор: Смолянинов А.В." },
-        { id: 14, title: "Структура лонгрида (Сторителлинг)", category: "creative", description: "Построение увлекательной длинной статьи с удержанием внимания до конца.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"АРХИТЕКТОР СТОРИТЕЛЛИНГА\". Создай структуру лонгрида на тему: [ТЕМА]. Используй модель \"Путь Героя\" в миниатюре: 1. Обычный мир (введение в контекст). 2. Зов к приключениям (проблема/инсайт). 3. Преодоление порога (начало решения). 4. Испытания и союзники (шаги, инструменты, ошибки). 5. Награда и возвращение (выводы, польза для читателя). Добавь 3 места для \"крючков\" внимания. Автор: Смолянинов А.В." },
-        { id: 15, title: "Рерайт текста под другой тон (Tone of Voice)", category: "creative", description: "Адаптация текста под строгий, дружелюбный, дерзкий или научный стиль.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"МАСТЕР TONE OF VOICE\". Перепиши этот текст: [ТЕКСТ]. Новый стиль: [ВЫБЕРИ: Строгий деловой / Дружелюбный соседский / Дерзкий и провокационный / Научно-популярный]. Правила: сохрани 100% фактов и смысла, измени только лексику, длину предложений и эмоциональную окраску. Автор: Смолянинов А.В." },
-        { id: 16, title: "Бизнес-модель Canvas (Заполнение)", category: "business", description: "Быстрое заполнение 9 блоков бизнес-модели для нового проекта.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"БИЗНЕС-АРХИТЕКТОР\". Заполни Business Model Canvas для идеи: [ИДЕЯ]. Дай по 3 конкретных, реалистичных варианта для каждого из 9 блоков: 1. Сегменты потребителей. 2. Ценностные предложения. 3. Каналы сбыта. 4. Взаимоотношения. 5. Потоки доходов. 6. Ключевые ресурсы. 7. Ключевые виды деятельности. 8. Ключевые партнеры. 9. Структура издержек. Автор: Смолянинов А.В." },
-        { id: 17, title: "Анализ конкурентов (SWOT 2.0)", category: "business", description: "Глубокий SWOT-анализ с акцентом на действия, а не просто констатацию фактов.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"СТРАТЕГ КОНКУРЕНЦИИ\". Проведи SWOT-анализ для: [ВАШ БИЗНЕС] на рынке [РЫНОК]. Не просто перечисли факты. Для каждой ячейки (S, W, O, T) дай 2 конкретных действия: как усилить силу, как превратить слабость в возможность, как использовать тренд, как защититься от угрозы. Формат: Таблица с колонкой \"Действие\". Автор: Смолянинов А.В." },
-        { id: 18, title: "Расчет Unit-экономики (Простой)", category: "business", description: "Помощь в расчете стоимости привлечения клиента и прибыли с одной продажи.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"ФИНАНСОВЫЙ АРХИТЕКТОР\". Помоги рассчитать unit-экономику для: [ПРОДУКТ]. Задай мне 5-7 ключевых вопросов по очереди (цена продажи, себестоимость, стоимость лида, конверсия), чтобы на основе моих ответов собрать таблицу: CAC, LTV, Маржинальность, Точка безубыточности. Не выдумывай цифры, спрашивай у меня. Автор: Смолянинов А.В." },
-        { id: 19, title: "Сценарий холодных звонков/сообщений", category: "business", description: "Скрипт, который не звучит как скрипт, с обработкой основных возражений.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"МАСТЕР ПЕРЕГОВОРОВ\". Напиши скрипт для [ЗВОНОК/СООБЩЕНИЕ] с целью [ЦЕЛЬ]. Структура: 1. Нестандартное, человечное приветствие (без \"вам удобно говорить?\"). 2. Крюк ценности (1 предложение, почему это важно для них). 3. Вопрос на вовлечение. 4. Обработка 3 главных возражений (Дорого / Нет времени / Уже есть поставщик) с использованием техники \"Присоединение + Аргумент + Вопрос\". Автор: Смолянинов А.В." },
-        { id: 20, title: "Построение дашборда KPI для команды", category: "business", description: "Определение 3-5 ключевых метрик для конкретной роли в компании.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"HR-АРХИТЕКТОР\". Определи KPI для должности: [ДОЛЖНОСТЬ] в сфере [СФЕРА]. Правила: 1. Максимум 5 метрик (больше = расфокус). 2. Каждая метрика должна быть измеримой (число, %). 3. Раздели на Leading (опережающие, процесс) и Lagging (запаздывающие, результат). 4. Дай формулу расчета для каждой. Автор: Смолянинов А.В." },
-        { id: 21, title: "Python: Генератор чистого кода", category: "programming", description: "Написание Python-скрипта с аннотациями типов, комментариями и обработкой ошибок.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"PYTHON-АРХИТЕКТОР\". Напиши скрипт для задачи: [ЗАДАЧА]. Требования: 1. Строгое соблюдение PEP 8. 2. Аннотации типов (Type Hints) для всех функций. 3. Блок try-except для обработки ошибок. 4. Докстринги (Docstrings) в формате Google. 5. Краткое объяснение, как запустить и какие библиотеки установить (pip install). Автор: Смолянинов А.В." },
-        { id: 22, title: "SQL: Оптимизация и написание запросов", category: "programming", description: "Создание эффективных SQL-запросов с объяснением плана выполнения.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"SQL-АРХИТЕКТОР\". Напиши SQL-запрос для СУБД [PostgreSQL/MySQL], чтобы: [ОПИШИ, КАКИЕ ДАННЫЕ НУЖНЫ]. Структура ответа: 1. Сам код запроса (с использованием CTE или JOIN, где уместно). 2. Построчное объяснение логики. 3. Рекомендации по индексации для ускорения этого запроса. Автор: Смолянинов А.В." },
-        { id: 23, title: "Дебаггинг и поиск ошибок в коде", category: "programming", description: "Анализ предоставленного кода, поиск багов и предложение исправленного варианта.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"ТЕХНИЧЕСКИЙ ДЕТЕКТИВ\". Проанализируй этот код: [ВСТАВИТЬ КОД]. 1. Найди все логические и синтаксические ошибки. 2. Объясни, ПОЧЕМУ возникает каждая ошибка (корень проблемы). 3. Предоставь исправленный, рабочий вариант кода. 4. Предложи 1 способ предотвратить такую ошибку в будущем (best practice). Автор: Смолянинов А.В." },
-        { id: 24, title: "HTML/CSS: Адаптивный компонент", category: "programming", description: "Генерация чистого, семантического и адаптивного кода для элемента интерфейса.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"FRONTEND-АРХИТЕКТОР\". Создай код для компонента: [НАПРИМЕР: КАРТОЧКА ТОВАРА / ФОРМА ВХОДА]. Требования: 1. Семантический HTML5. 2. CSS с использованием Flexbox/Grid. 3. Адаптивность (mobile-first, медиа-запросы). 4. Использование CSS-переменных для цветов (в палитре #f5f5f2, #e0e0e0). 5. Без внешних библиотек, чистый код. Автор: Смолянинов А.В." },
-        { id: 25, title: "Регулярные выражения (RegEx) конструктор", category: "programming", description: "Создание и объяснение сложных регулярных выражений для валидации или парсинга.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"REGEX-АРХИТЕКТОР\". Мне нужно регулярное выражение, которое: [ОПИШИ, ЧТО ДОЛЖНО НАХОДИТЬ, НАПРИМЕР: EMAIL, ТЕЛЕФОН, ДАТА]. 1. Напиши само выражение. 2. Разбери его по частям в таблице (Символ | Значение). 3. Дай 3 примера строк, которые совпадут, и 3, которые не совпадут (для проверки). Автор: Смолянинов А.В." },
-        { id: 26, title: "Протокол восстановления режима сна", category: "health", description: "Пошаговый план нормализации циркадных ритмов за 7 дней.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"БИОХАКЕР СНА\". Составь 7-дневный протокол восстановления режима сна. Условия: текущее засыпание в [ВРЕМЯ], целевое в [ВРЕМЯ]. Включи: 1. Правила световой гигиены (утро/вечер). 2. Температурный режим. 3. Протокол питания за 3 часа до сна. 4. Ритуал отхода ко сну (без экранов). 5. Что делать, если не спится более 20 минут. Автор: Смолянинов А.В." },
-        { id: 27, title: "Конструктор сбалансированного рациона", category: "health", description: "План питания с учетом КБЖУ, доступных продуктов и времени на готовку.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"АРХИТЕКТОР ПИТАНИЯ\". Составь план питания на 3 дня. Параметры: цель [ПОХУДЕНИЕ/НАБОР/ПОДДЕРЖАНИЕ], бюджет [ЭКОНОМ/СРЕДНИЙ], время на готовку [МИНУТ В ДЕНЬ], ограничения: [АЛЛЕРГИИ/НЕЛЮБИМЫЕ ПРОДУКТЫ]. Формат: Таблица (Прием пищи | Блюдо | Примерный вес | КБЖУ | Время приготовления). Добавь список покупок. Автор: Смолянинов А.В." },
-        { id: 28, title: "Домашняя тренировка (без инвентаря)", category: "health", description: "Эффективный комплекс упражнений с акцентом на технику и безопасность.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"ФИТНЕС-АРХИТЕКТОР\". Создай тренировку на [30/45] минут без инвентаря. Цель: [СИЛА/ВЫНОСЛИВОСТЬ/РАСТЯЖКА]. Уровень: [НАЧИНАЮЩИЙ/СРЕДНИЙ]. Структура: 1. Динамическая разминка (5 мин, описать 3 упражнения). 2. Основной блок (3-4 круга, описать упражнения, количество повторений и ОТДЫХ). 3. Заминка и растяжка (5 мин). Добавь предупреждения о технике безопасности для суставов. Автор: Смолянинов А.В." },
-        { id: 29, title: "Протокол борьбы с выгоранием", category: "health", description: "Экстренная и долгосрочная стратегия восстановления ресурса.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"АНТИ-ВЫГОРАНИЕ\". Я чувствую: [ОПИШИ СИМПТОМЫ: усталость, апатия, раздражительность]. 1. Экстренный протокол на ближайшие 24 часа (что сделать прямо сейчас, чтобы снизить нагрузку). 2. Аудит текущих обязательств (методика \"Стоп-делать\"). 3. План внедрения 3-х микро-привычек для восстановления дофамина и энергии на ближайшую неделю. Автор: Смолянинов А.В." },
-        { id: 30, title: "Анализ симптомов (Триаж)", category: "health", description: "Структурирование жалоб для более четкого разговора с врачом (не заменяет врача!).", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"МЕДИЦИНСКИЙ АССИСТЕНТ (ТРИАЖ)\". Я опишу симптомы: [ОПИСАНИЕ]. Твоя задача НЕ ставить диагноз, а помочь мне структурировать информацию для визита к врачу. 1. Сформулируй основную жалобу одним предложением. 2. Составь список уточняющих вопросов, которые задаст врач (длительность, характер боли, связь с едой/движением). 3. Напиши, к какому именно специалисту (узкому) лучше обратиться в первую очередь. Автор: Смолянинов А.В." },
-        { id: 31, title: "Метод Помодоро (Адаптивный)", category: "productivity", description: "Настройка интервалов работы и отдыха под конкретный тип задачи.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"МАСТЕР ФОКУСА\". Я буду работать над: [ТИП ЗАДАЧИ: творческая/рутинная/учебная]. Подбери оптимальный интервал Помодоро (не обязательно 25/5). 1. Предложи 2 варианта интервалов (например, 50/10 или 90/20) с обоснованием. 2. Дай список идей для качественного отдыха в перерыве (без телефона). 3. Напиши правило \"одного касания\" для отвлечений во время интервала. Автор: Смолянинов А.В." },
-        { id: 32, title: "Утренний ритуал (Конструктор)", category: "productivity", description: "Создание персонализированного утреннего протокола для заряда энергией.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"АРХИТЕКТОР УТРА\". У меня есть [КОЛИЧЕСТВО] минут утром. Я жаворонок/сова. Моя цель: [ЭНЕРГИЯ/СПОКОЙСТВИЕ/ПРОДУКТИВНОСТЬ]. Составь пошаговый протокол. Обязательные элементы: гидратация, свет, движение, настройка намерения на день. Исключи: проверку соцсетей и новостей. Распиши по минутам. Автор: Смолянинов А.В." },
-        { id: 33, title: "Цифровой детокс (План на выходные)", category: "productivity", description: "Стратегия временного отказа от экранов с альтернативными занятиями.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"ЦИФРОВОЙ ДИЕТОЛОГ\". Составь план цифрового детокса на [1 день / выходные]. 1. Правила: какие устройства отключаем полностью, какие оставляем на экстренную связь. 2. Подготовка: что сделать в пятницу вечером, чтобы детокс прошел гладко. 3. Альтернативы: список из 10 офлайн-активностей (прогулки, хобби, чтение), разбитых по времени суток. Автор: Смолянинов А.В." },
-        { id: 34, title: "Второй мозг (Система заметок)", category: "productivity", description: "Настройка структуры в Notion/Obsidian по методу PARA.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"АРХИТЕКТОР ЗНАНИЙ\". Помоги мне настроить систему заметок по методу PARA (Projects, Areas, Resources, Archives). 1. Дай определение каждой категории на простых примерах для моей сферы: [СФЕРА ДЕЯТЕЛЬНОСТИ]. 2. Предложи структуру папок/тегов внутри каждой категории. 3. Напиши ежедневный 5-минутный ритуал для поддержания порядка в этой системе. Автор: Смолянинов А.В." },
-        { id: 35, title: "Принятие сложного решения (Матрица)", category: "productivity", description: "Взвешивание вариантов с учетом вероятности и ценности исхода.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"МАСТЕР РЕШЕНИЙ\". Я выбираю между: [ВАРИАНТ А] и [ВАРИАНТ Б]. Примени матрицу взвешенных решений. 1. Выдели 5 ключевых критериев важности для меня. 2. Присвой каждому критерию вес (1-10). 3. Оцени каждый вариант по этим критериям (1-10). 4. Посчитай итоговый балл и дай обоснованную рекомендацию. 5. Добавь анализ \"Наихудшего сценария\" для каждого варианта. Автор: Смолянинов А.В." },
-        { id: 36, title: "Midjourney: Архитектурный рендер", category: "image", description: "Промпт для фотореалистичной визуализации интерьера или экстерьера.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"АРХИ-ВИЗУАЛИЗАТОР\". Создай промпт для Midjourney v6 для: [ОПИСАНИЕ ПОМЕЩЕНИЯ/ЗДАНИЯ]. Ключевые элементы: 1. Стиль (например, Japandi, скандинавский минимализм). 2. Освещение (объемный свет, god rays, время суток). 3. Материалы (текстура дерева, бетона, ткани). 4. Камера (широкоугольный объектив 16mm, f/8 для глубины резкости). 5. Параметры: --ar 16:9 --style raw --v 6.0. Напиши промпт на английском. Автор: Смолянинов А.В." },
-        { id: 37, title: "Stable Diffusion: Контроль позы (OpenPose)", category: "image", description: "Промпт и настройки для точного воспроизведения позы человека.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"SD-ИНЖЕНЕР\". Мне нужно сгенерировать изображение человека в позе: [ОПИСАНИЕ ПОЗЫ]. 1. Напиши позитивный промпт (качество, освещение, детали одежды, фон). 2. Напиши негативный промпт (искажения анатомии, лишние пальцы, размытие). 3. Укажи рекомендуемые настройки: Sampler (DPM++ 2M Karras), Steps (25-30), CFG Scale (7), и необходимость использования ControlNet (OpenPose). Автор: Смолянинов А.В." },
-        { id: 38, title: "Нейро-фото: Портретная съемка", category: "image", description: "Создание гиперреалистичного портрета с правильной анатомией и светом.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"ПОРТРЕТИСТ\". Промпт для: [ОПИСАНИЕ ПЕРСОНАЖА]. Акцент на: 1. Кожа (текстура пор, легкий блеск, пушковые волосы, несовершенства для реализма). 2. Глаза (отражение источника света в зрачке, детализация радужки). 3. Свет (Rembrandt lighting или мягкий оконный свет). 4. Камера (85mm f/1.4 для красивого боке). Стиль: фотореализм, снято на Sony A7R IV. Автор: Смолянинов А.В." },
-        { id: 39, title: "Генерация бесшовных текстур", category: "image", description: "Промпт для создания паттернов и текстур для дизайна или 3D.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"ТЕКСТУРНЫЙ АРХИТЕКТОР\". Создай промпт для генерации бесшовной текстуры: [МАТЕРИАЛ, НАПРИМЕР: МРАМОР, ДЕРЕВО, ТКАНЬ]. Требования: 1. Вид строго сверху (top-down view). 2. Равномерное освещение без теней и виньетирования. 3. Высокая детализация (8k resolution, highly detailed). 4. Ключевые слова для бесшовности: seamless pattern, tileable, repeating pattern. Параметры: --tile --ar 1:1. Автор: Смолянинов А.В." },
-        { id: 40, title: "Превращение наброска в рендер (Img2Img)", category: "image", description: "Промпт и инструкция для улучшения чернового скетча нейросетью.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"IMG2IMG МАСТЕР\". Я загружу черно-белый набросок: [ОПИСАНИЕ НАБРОСКА]. 1. Напиши промпт, который детализирует этот набросок, добавив материалы, свет и окружение. 2. Укажи рекомендуемый Denoising strength (например, 0.4-0.6 для сохранения композиции). 3. Добавь негативный промпт для избежания артефактов. 4. Дай совет, как усилить контроль над результатом (например, через ControlNet Scribble). Автор: Смолянинов А.В." },
-        { id: 41, title: "Изучение иностранного языка (Метод интервалов)", category: "education", description: "План изучения языка с использованием интервального повторения и погружения.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"ПОЛИГЛОТ-АРХИТЕКТОР\". Я хочу выучить [ЯЗЫК] с уровня [УРОВЕНЬ] до [ЦЕЛЬ] за [СРОК]. У меня есть [X] минут в день. Составь план: 1. Ежедневный микро-ритуал (словарь + интервальное повторение, например, Anki). 2. Еженедельная практика (потребление контента: подкасты/видео с транскрипцией). 3. Метод \"теневого повторения\" (shadowing) для произношения. 4. Список из 100 самых частотных слов для старта. Автор: Смолянинов А.В." },
-        { id: 42, title: "Конспект сложной книги/статьи (Метод Фейнмана)", category: "education", description: "Объяснение сложной темы простыми словами с выделением ключевых ментальных моделей.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"МЕТОД ФЕЙНМАНА\". Объясни тему/книгу: [НАЗВАНИЕ/ТЕМА]. 1. Объясни это так, как будто мне 12 лет (простые слова, аналогии из жизни). 2. Выдели 3 главные ментальные модели или инсайта из этого материала. 3. Укажи на \"пробелы в понимании\" (что в этой теме обычно путают) и проясни их. 4. Дай 1 практическое задание для проверки, как я это усвоил. Автор: Смолянинов А.В." },
-        { id: 43, title: "Подготовка к собеседованию (Симуляция)", category: "education", description: "Ролевая игра, где ИИ задает вопросы, а затем дает жесткую обратную связь.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"СТРОГИЙ ИНТЕРВЬЮЕР\". Я собеседуется на должность: [ДОЛЖНОСТЬ] в сфере [СФЕРА]. 1. Задавай мне по ОДНОМУ вопросу за раз. 2. Жди моего ответа. 3. После моего ответа дай жесткую, но конструктивную обратную связь: что было хорошо, что плохо, как перефразировать сильнее (используй метод STAR: Situation, Task, Action, Result). 4. Переходи к следующему вопросу. Начни с вопроса: \"Расскажите о себе\". Автор: Смолянинов А.В." },
-        { id: 44, title: "Скорочтение и работа с информацией", category: "education", description: "Техники быстрого выделения сути из больших объемов текста.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"АРХИТЕКТОР ВНИМАНИЯ\". Я буду вставлять большие тексты. Твоя задача: 1. Выдать саммари в 3-х предложениях. 2. Выделить 5 ключевых тезисов маркированным списком. 3. Указать, какие абзацы можно пропустить (вода, лирические отступления). 4. Сформулировать 1 главный вопрос, на который отвечает этот текст. Жди мой текст. Автор: Смолянинов А.В." },
-        { id: 45, title: "Составление резюме (ATS-friendly)", category: "education", description: "Оптимизация опыта работы под автоматические системы отбора и рекрутеров.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"КАРЬЕРНЫЙ АРХИТЕКТОР\". Я дам тебе свой опыт: [ОПИСАНИЕ ОПЫТА] и вакансию, на которую подаюсь: [ОПИСАНИЕ ВАКАНСИИ]. Перепиши мой опыт в формате достижений (не обязанностей!). Используй формулу: \"Глагол действия + Конкретная задача + Измеримый результат (цифры, %)\". Убери клише вроде \"коммуникабельный\". Сделай текст дружественным для ATS-систем (впиши релевантные ключевые слова из вакансии). Автор: Смолянинов А.В." },
-        { id: 46, title: "Генератор UI/UX Брифа", category: "creative", description: "Структурирование требований для дизайнера или для самостоятельной работы.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"UX-АРХИТЕКТОР\". Помоги мне составить бриф на дизайн: [ТИП ПРОЕКТА: лендинг, мобильное приложение]. Задай мне 7 ключевых вопросов по очереди: 1. Цель и целевое действие. 2. Портрет ЦА. 3. Референсы (что нравится/не нравится). 4. Обязательные блоки/функции. 5. Брендбук (цвета, шрифты, или запрос на их подбор). 6. Технические ограничения. 7. Сроки и бюджет. После моих ответов собери это в структурированный документ. Автор: Смолянинов А.В." },
-        { id: 47, title: "Критика дизайна (Heuristic Evaluation)", category: "creative", description: "Анализ интерфейса или макета по эвристикам Нильсена.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"UI-КРИТИК\". Я опишу или загружу (если есть возможность) дизайн: [ОПИСАНИЕ ИНТЕРФЕЙСА]. Проведи эвристическую оценку по 5 принципам Нильсена: 1. Видимость состояния системы. 2. Соответствие между системой и реальным миром. 3. Контроль и свобода пользователя. 4. Эстетика и минималистичный дизайн. 5. Помощь в распознавании, а не в припоминании. Для каждого пункта укажи: Проблема | Серьезность (1-4) | Рекомендация по исправлению. Автор: Смолянинов А.В." },
-        { id: 48, title: "Подбор цветовой палитры (Психология цвета)", category: "creative", description: "Генерация HEX-кодов с обоснованием их психологического воздействия.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"КОЛОРИСТ\". Подбери цветовую палитру для проекта: [ОПИСАНИЕ ПРОЕКТА И ЕГО НАСТРОЕНИЯ]. 1. Предложи 1 основной цвет, 2 вторичных и 2 акцентных цвета. 2. Дай HEX-коды для каждого. 3. Объясни психологию выбора (почему эти цвета вызовут нужную эмоцию у ЦА). 4. Укажи, как применять их в интерфейсе (фон, текст, кнопки, ошибки). Учти контрастность для доступности (WCAG). Автор: Смолянинов А.В." },
-        { id: 49, title: "Мозговой штурм: Метод SCAMPER", category: "creative", description: "Модификация существующей идеи через 7 вопросов для инноваций.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"ИННОВАТОР SCAMPER\". Возьми за основу этот продукт/идею: [ОПИСАНИЕ]. Прогони её через 7 фильтров: 1. Substitute (Заменить что-то?). 2. Combine (Объединить с чем-то?). 3. Adapt (Адаптировать идею из другой сферы?). 4. Modify (Увеличить/уменьшить, изменить форму?). 5. Put to other uses (Найти новое применение?). 6. Eliminate (Что можно убрать без потери ценности?). 7. Reverse (Перевернуть процесс наоборот?). Выдай по 1-2 конкретных идеи для каждого пункта. Автор: Смолянинов А.В." },
-        { id: 50, title: "Написание технической документации", category: "programming", description: "Создание понятного README или инструкции пользователя.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"ТЕХПИСАТЕЛЬ\". Напиши README.md для проекта: [ОПИСАНИЕ ПРОЕКТА/КОДА]. Структура: 1. Заголовок и краткое описание (что это и зачем нужно). 2. Демонстрация (скриншот или пример работы). 3. Установка (пошаговые команды). 4. Использование (примеры кода или сценарии). 5. Вклад в проект (как помочь). 6. Лицензия. Используй Markdown, четкие заголовки и блоки кода. Автор: Смолянинов А.В." },
-        { id: 51, title: "Автоматизация Telegram-бота (Логика)", category: "programming", description: "Проектирование сценариев и состояний для диалогового бота.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"АРХИТЕКТОР БОТОВ\". Спроектируй логику Telegram-бота для: [ЦЕЛЬ БОТА]. 1. Опиши User Flow (путь пользователя) по шагам. 2. Составь список команд и инлайн-кнопок. 3. Опиши состояния (State Machine): что бот делает, если пользователь ввел не то, или прервал диалог. 4. Напиши пример приветственного сообщения и сообщения об ошибке в тоне: [ТОН БОТА]. Автор: Смолянинов А.В." },
-        { id: 52, title: "Финансовый буфер (Подушка безопасности)", category: "business", description: "План создания и сохранения финансового резерва без стресса.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"ФИНАНСОВЫЙ СТРАТЕГ\". Мой доход: [СУММА], обязательные расходы: [СУММА]. Цель: подушка безопасности на [X] месяцев. 1. Рассчитай целевую сумму. 2. Предложи 3 безболезненных способа сократить расходы на 10-15% прямо сейчас. 3. Составь план автоматического откладывания (правило \"заплати сначала себе\"). 4. Укажи, где хранить эти средства (инструменты с высокой ликвидностью и низкой риском). Автор: Смолянинов А.В." },
-        { id: 53, title: "Оптимизация рабочего места (Эргономика)", category: "productivity", description: "Чек-лист по настройке стола, стула и монитора для здоровья спины и глаз.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"ЭРГОНОМИСТ\". Дай чек-лист по настройке рабочего места. Разделы: 1. Стул и поза (угол коленей, поддержка поясницы, положение стоп). 2. Монитор (расстояние до глаз, высота верхней кромки относительно глаз, угол наклона). 3. Освещение (отсутствие бликов, правило 20-20-20 для глаз). 4. Организация стола (положение клавиатуры и мыши для предотвращения туннельного синдрома). Автор: Смолянинов А.В." },
-        { id: 54, title: "Генератор негативных промптов (Universal)", category: "image", description: "Универсальный блок для очистки изображений от артефактов нейросетей.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"ОЧИСТИТЕЛЬ ИЗОБРАЖЕНИЙ\". Сгенерируй мощный универсальный негативный промпт для Stable Diffusion/Midjourney, чтобы исключить: размытие, искаженную анатомию (лишние пальцы, конечности), водяные знаки, текст, артефакты сжатия, неестественные цвета, пластиковую кожу, плохое освещение, деформированный фон. Выдай его в виде готового блока через запятую на английском языке. Автор: Смолянинов А.В." },
-        { id: 55, title: "Анализ тональности отзывов", category: "marketing", description: "Выявление реальных проблем и преимуществ продукта из текста отзывов.", text: "Активируй NEURAL_ARCHITECT PREMIUM++ v8.4.00 в режиме \"АНАЛИТИК ОТЗЫВОВ\". Проанализируй этот список отзывов: [ВСТАВИТЬ ОТЗЫВЫ]. 1. Определи общую тональность (% позитивных, негативных, нейтральных). 2. Выдели топ-3 повторяющиеся жалобы (боли клиентов). 3. Выдели топ-3 повторяющихся преимущества, которые отмечают клиенты. 4. Сформулируй 2 конкретных предложения по улучшению продукта на основе этих данных. Автор: Смолянинов А.В." }
-    ];
-
-    // Функция рендеринга карточек
-    function renderPrompts(filterText = '', category = 'all') {
-        const grid = document.getElementById('promptGrid');
-        grid.innerHTML = '';
-
-        const filtered = prompts.filter(p => {
-            const matchesText = p.title.toLowerCase().includes(filterText.toLowerCase()) || 
-                                p.description.toLowerCase().includes(filterText.toLowerCase());
-            const matchesCategory = category === 'all' || p.category === category;
-            return matchesText && matchesCategory;
-        });
-
-        if (filtered.length === 0) {
-            grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-secondary); padding: 40px;">Промпты не найдены. Попробуйте изменить запрос.</p>';
-            return;
-        }
-
-        filtered.forEach(p => {
-            const card = document.createElement('div');
-            card.className = 'prompt-card';
-            card.innerHTML = `
-                <div class="card-header">
-                    <div>
-                        <div class="card-title">${p.title}</div>
-                        <span class="card-category">${getCategoryName(p.category)}</span>
-                    </div>
+    <div class="container">
+        <header>
+            <h1>🧠 NEURAL_ARCHITECT PREMIUM++</h1>
+            <div class="subtitle">v8.4.00 · Универсальная библиотека промтов для ИИ</div>
+            <div>
+                <span class="badge">50+ режимов</span>
+                <span class="badge">9 категорий</span>
+                <span class="badge">MIT</span>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="statTotal">0</span>
+                    <span class="stat-label">Промтов</span>
                 </div>
-                <div class="card-description">${p.description}</div>
-                <button class="copy-btn" onclick="openModal(${p.id})">👁️ Просмотр и копирование</button>
-            `;
-            grid.appendChild(card);
-        });
-    }
+                <div class="stat-item">
+                    <span class="stat-number" id="statCategories">0</span>
+                    <span class="stat-label">Категорий</span>
+                </div>
+            </div>
+            <div class="author">Автор: Смолянинов А.В. · NEURAL_ARCHITECT v8.4.00</div>
+        </header>
 
-    function getCategoryName(cat) {
-        const names = {
-            'universal': 'Универсальные',
-            'marketing': 'Маркетинг',
-            'business': 'Бизнес',
-            'programming': 'IT и Код',
-            'health': 'Здоровье',
-            'productivity': 'Продуктивность',
-            'creative': 'Творчество',
-            'image': 'Изображения',
-            'education': 'Обучение'
-        };
-        return names[cat] || cat;
-    }
+        <div class="controls">
+            <input type="text" class="search-box" id="searchBox" placeholder="🔍 Поиск по названию или описанию...">
+            <button class="filter-btn active" data-category="all">Все</button>
+            <button class="filter-btn" data-category="universal">Универсальные</button>
+            <button class="filter-btn" data-category="marketing">Маркетинг</button>
+            <button class="filter-btn" data-category="business">Бизнес</button>
+            <button class="filter-btn" data-category="programming">IT и Код</button>
+            <button class="filter-btn" data-category="health">Здоровье</button>
+            <button class="filter-btn" data-category="productivity">Продуктивность</button>
+            <button class="filter-btn" data-category="creative">Творчество</button>
+            <button class="filter-btn" data-category="image">Изображения</button>
+            <button class="filter-btn" data-category="education">Обучение</button>
+            <button class="filter-btn" data-category="home">Дом</button>
+        </div>
 
-    // Модальное окно
-    function openModal(id) {
-        const p = prompts.find(item => item.id === id);
-        if (!p) return;
-        document.getElementById('modalTitle').innerText = p.title;
-        document.getElementById('modalCategory').innerText = getCategoryName(p.category);
-        document.getElementById('modalText').innerText = p.text;
-        document.getElementById('promptModal').style.display = 'flex';
-    }
+        <div class="grid" id="grid"></div>
 
-    function closeModal() {
-        document.getElementById('promptModal').style.display = 'none';
-    }
+        <div class="empty-state" id="emptyState" style="display:none;">
+            <h3>Ничего не найдено</h3>
+            <p>Попробуй изменить запрос или категорию</p>
+        </div>
 
-    function copyModalText() {
-        const text = document.getElementById('modalText').innerText;
-        navigator.clipboard.writeText(text).then(() => {
-            const btn = document.querySelector('.modal .copy-btn');
-            const originalText = btn.innerText;
-            btn.innerText = '✅ Скопировано!';
-            btn.classList.add('copied');
-            setTimeout(() => {
-                btn.innerText = originalText;
-                btn.classList.remove('copied');
-            }, 2000);
-        });
-    }
+        <div class="repo-info">
+            📦 Исходники и JSON-каталог: <a href="https://github.com/smol0901-jpg/NEURAL_ARCHITECT-PREMIUM-v8.4.00-PROMTS" target="_blank">github.com/smol0901-jpg/NEURAL_ARCHITECT-PREMIUM-v8.4.00-PROMTS</a><br>
+            Чтобы добавить новый промт — отредактируй <code>prompts.json</code> и сделай commit. Сайт подхватит автоматически.
+        </div>
+    </div>
 
-    // Закрытие модального окна по клику вне его
-    window.onclick = function(event) {
-        const modal = document.getElementById('promptModal');
-        if (event.target === modal) {
-            closeModal();
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <div>
+                    <h2 class="modal-title" id="modalTitle">Title</h2>
+                    <span class="modal-category" id="modalCategory">Category</span>
+                </div>
+                <button class="modal-close" onclick="closeModal()" aria-label="Закрыть">×</button>
+            </div>
+            <div class="modal-body">
+                <pre class="modal-text" id="modalText"></pre>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn secondary" onclick="closeModal()">Закрыть</button>
+                <button class="modal-btn primary" onclick="copyFromModal()">📋 Скопировать</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">Скопировано в буфер обмена</div>
+
+    <script>
+        // === AUTO-LOAD FROM prompts.json ===
+        let prompts = [];
+        let currentCategory = 'all';
+        let currentQuery = '';
+
+        async function loadPrompts() {
+            try {
+                const res = await fetch('./prompts.json?v=' + Date.now());
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const data = await res.json();
+                prompts = data.prompts || [];
+                document.getElementById('statTotal').textContent = prompts.length;
+                const cats = new Set(prompts.map(p => p.category));
+                document.getElementById('statCategories').textContent = cats.size;
+                render();
+            } catch (e) {
+                console.error('Не удалось загрузить prompts.json:', e);
+                document.getElementById('grid').innerHTML =
+                    '<div class="empty-state"><h3>⚠️ Не удалось загрузить каталог</h3><p>Запусти сайт через локальный сервер (<code>python -m http.server</code>) или открой через GitHub Pages.</p></div>';
+            }
         }
-    }
 
-    // Обработчики событий
-    document.getElementById('searchInput').addEventListener('input', (e) => {
-        renderPrompts(e.target.value, document.getElementById('categoryFilter').value);
-    });
+        function getCategoryName(cat) {
+            const names = {
+                'universal': 'Универсальные',
+                'marketing': 'Маркетинг',
+                'business': 'Бизнес',
+                'programming': 'IT и Код',
+                'health': 'Здоровье',
+                'productivity': 'Продуктивность',
+                'creative': 'Творчество',
+                'image': 'Изображения',
+                'education': 'Обучение',
+                'home': 'Дом'
+            };
+            return names[cat] || cat;
+        }
 
-    document.getElementById('categoryFilter').addEventListener('change', (e) => {
-        renderPrompts(document.getElementById('searchInput').value, e.target.value);
-    });
+        function render() {
+            const grid = document.getElementById('grid');
+            const empty = document.getElementById('emptyState');
+            const q = currentQuery.toLowerCase().trim();
 
-    // Инициализация
-    renderPrompts();
-</script>
+            const filtered = prompts.filter(p => {
+                const matchCat = currentCategory === 'all' || p.category === currentCategory;
+                const matchQ = !q ||
+                    (p.title || '').toLowerCase().includes(q) ||
+                    (p.description || '').toLowerCase().includes(q) ||
+                    (p.text || '').toLowerCase().includes(q);
+                return matchCat && matchQ;
+            });
 
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                empty.style.display = 'block';
+                return;
+            }
+            empty.style.display = 'none';
+
+            grid.innerHTML = filtered.map(p => `
+                <div class="prompt-card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">${escapeHtml(p.title)}</div>
+                            <span class="card-category">${escapeHtml(getCategoryName(p.category))}</span>
+                        </div>
+                    </div>
+                    <div class="card-description">${escapeHtml(p.description)}</div>
+                    <button class="copy-btn" onclick="openModal(${p.id})">👁️ Просмотр и копирование</button>
+                </div>
+            `).join('');
+        }
+
+        function escapeHtml(s) {
+            return String(s).replace(/[&<>"']/g, c => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            }[c]));
+        }
+
+        // === Modal ===
+        let currentPromptText = '';
+        function openModal(id) {
+            const p = prompts.find(item => item.id === id);
+            if (!p) return;
+            document.getElementById('modalTitle').textContent = p.title;
+            document.getElementById('modalCategory').textContent = getCategoryName(p.category);
+            document.getElementById('modalText').textContent = p.text;
+            currentPromptText = p.text;
+            document.getElementById('modal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            document.getElementById('modal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        document.getElementById('modal').addEventListener('click', (e) => {
+            if (e.target.id === 'modal') closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        function copyFromModal() {
+            copyToClipboard(currentPromptText);
+        }
+
+        function copyToClipboard(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(showToast).catch(fallback);
+            } else {
+                fallback();
+            }
+            function fallback() {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                try { document.execCommand('copy'); showToast(); } catch (e) {}
+                document.body.removeChild(ta);
+            }
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg || 'Скопировано в буфер обмена';
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 1800);
+        }
+
+        // === Filters & Search ===
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCategory = btn.dataset.category;
+                render();
+            });
+        });
+
+        document.getElementById('searchBox').addEventListener('input', (e) => {
+            currentQuery = e.target.value;
+            render();
+        });
+
+        // === Init ===
+        loadPrompts();
+    </script>
 </body>
 </html>
